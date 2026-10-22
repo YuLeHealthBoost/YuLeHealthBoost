@@ -674,7 +674,11 @@ window.addEventListener('load', function(){ if (!location.hash) window.scrollTo(
   if (!doel) return;
   var gebruikerScrolt = false;
   ['wheel','touchstart','keydown'].forEach(function(e){ window.addEventListener(e, function(){ gebruikerScrolt = true; }, {passive:true, once:true}); });
-  function uitlijnen(){ if (!gebruikerScrolt) doel.scrollIntoView({behavior:'auto', block:'start'}); }
+  function uitlijnen(){
+    if (gebruikerScrolt) return;
+    var marge = parseInt(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+    window.scrollTo({top: doel.getBoundingClientRect().top + window.scrollY - marge, behavior: 'instant'});
+  }
   window.addEventListener('load', function(){
     uitlijnen();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(uitlijnen);

@@ -124,7 +124,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .step p{color:rgba(255,255,255,.7);font-size:.94rem;margin:0}
 
 /* reviews */
-.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;margin-top:44px}
+.reviews-carousel{margin-top:44px;--per:2;--gap:22px}
+.reviews-viewport{overflow:hidden;padding:4px;margin:-4px}
+.reviews{display:flex;gap:var(--gap);transition:transform .7s cubic-bezier(.22,.61,.36,1)}
+.reviews .review{flex:0 0 calc((100% - (var(--per) - 1) * var(--gap)) / var(--per))}
+.reviews-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
+.reviews-btn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background .2s}
+.reviews-btn:hover,.reviews-btn:focus-visible{border-color:var(--ink)}
+.reviews-btn svg{width:18px;height:18px;stroke:var(--ink);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.reviews-dots{display:flex;gap:8px}
+.reviews-dots button{width:9px;height:9px;padding:0;border-radius:999px;border:none;background:var(--line);cursor:pointer;transition:width .3s,background .3s}
+.reviews-dots button[aria-current="true"]{width:26px;background:var(--lime)}
+@media(max-width:760px){.reviews-carousel{--per:1}}
+@media(prefers-reduced-motion:reduce){.reviews{transition:none}}
 .review{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px 28px;display:flex;flex-direction:column}
 .review-quote{font-family:var(--display);font-weight:700;font-size:2.6rem;line-height:1;color:var(--lime);margin-bottom:10px}
 .review p{font-size:.97rem;color:var(--slate);flex:1;margin-bottom:18px}
@@ -386,18 +398,37 @@ footer a{color:rgba(255,255,255,.75)}
   <div class="wrap">
     <p class="eyebrow">Ervaringen</p>
     <h2>Wat cli&euml;nten zeggen</h2>
-    <div class="reviews">
-      <div class="review">
-        <div class="review-quote">&ldquo;</div>
-        <p>Ik heb het traject met Yuri als zeer professioneel ervaren. Heel veel kennis en altijd in staat om mijn vragen te beantwoorden. Ook super fijn dat er wordt meegedacht over mijn persoonlijke situatie. Met een druk gezinsleven is iemand die meedenkt over de mogelijkheden echt fijn. Er was ook altijd ruimte om te kunnen genieten. Al met al een super ervaring!</p>
-        <div class="review-who">Kyan<span>6 weken Plus</span></div>
+    <!-- Reviews-carrousel. Review toevoegen: kopieer een blok "review" en vul tekst, voornaam en traject in. De bolletjes passen zich vanzelf aan. -->
+    <div class="reviews-carousel" aria-roledescription="carrousel" aria-label="Ervaringen van cli&euml;nten">
+      <div class="reviews-viewport">
+      <div class="reviews">
+        <div class="review">
+          <div class="review-quote">&ldquo;</div>
+          <p>Ik heb het traject met Yuri als zeer professioneel ervaren. Heel veel kennis en altijd in staat om mijn vragen te beantwoorden. Ook super fijn dat er wordt meegedacht over mijn persoonlijke situatie. Met een druk gezinsleven is iemand die meedenkt over de mogelijkheden echt fijn. Er was ook altijd ruimte om te kunnen genieten. Al met al een super ervaring!</p>
+          <div class="review-who">Kyan<span>6 weken Plus</span></div>
+        </div>
+        <div class="review">
+          <div class="review-quote">&ldquo;</div>
+          <p>Vanaf het begin voelde het vertrouwd. Yuri luistert echt naar je en denkt met je mee. Ook tussendoor kan ik hem altijd een berichtje sturen als ik hulp nodig heb met mijn voeding, en zelfs als ik uit eten ga geeft hij handige tips. En als ik het even niet meer zie zitten, weet hij me weer te motiveren. Yuri, je bent een topper! &#x1F4AA;</p>
+          <div class="review-who">Sharon<span>16 weken Plus</span></div>
+        </div>
+        <div class="review">
+          <div class="review-quote">&ldquo;</div>
+          <p>Als onderdeel van Yuri zijn afstudeeropdracht heb ik zijn persoonlijke begeleiding als erg prettig ervaren. Hij luistert goed naar je wensen, stelt haalbare en realistische doelen en weet zijn begeleiding mooi af te stemmen op jouw persoonlijke sportieve ambities. De communicatie is fijn en laagdrempelig, en je merkt dat hij echt meedenkt om het beste uit jezelf te halen.</p>
+          <div class="review-who">Koen<span>6 weken Plus</span></div>
+        </div>
+        <div class="review">
+          <div class="review-quote">&ldquo;</div>
+          <p>Als je op zoek bent naar laagdrempelige persoonlijke begeleiding om af te vallen zonder crashdieet, of als je je leefstijl wilt aanpassen, kan ik Yuri iedereen aanraden. Door zijn betrokken en enthousiaste aanpak leer je gezondere alternatieven kennen en denkt hij met je mee over wat je kunt doen bij een etentje, bbq of ander moment waarop allerlei lekkers op het menu staat. Mijn leefstijl is veranderd, waardoor ik nu ook het vertrouwen heb dat ik op gewicht kan blijven.</p>
+          <div class="review-who">Noortje<span>6 weken Plus</span></div>
+        </div>
       </div>
-      <div class="review">
-        <div class="review-quote">&ldquo;</div>
-        <p>Als onderdeel van Yuri zijn afstudeeropdracht heb ik zijn persoonlijke begeleiding als erg prettig ervaren. Hij luistert goed naar je wensen, stelt haalbare en realistische doelen en weet zijn begeleiding mooi af te stemmen op jouw persoonlijke sportieve ambities. De communicatie is fijn en laagdrempelig, en je merkt dat hij echt meedenkt om het beste uit jezelf te halen.</p>
-        <div class="review-who">Koen<span>6 weken Plus</span></div>
       </div>
-      <!-- Derde review: kopieer een blok "review" hierboven en vul tekst, voornaam en traject in -->
+      <div class="reviews-nav">
+        <button class="reviews-btn" type="button" data-dir="-1" aria-label="Vorige review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="reviews-dots" role="group" aria-label="Kies een review"></div>
+        <button class="reviews-btn" type="button" data-dir="1" aria-label="Volgende review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
     </div>
     <div class="cta-band">
       <a class="btn btn-primary" href="#kennismaking">Plan je gratis kennismaking</a>
@@ -660,6 +691,45 @@ tabs.forEach(function(tab){
     });
   });
 });
+
+// reviews-carrousel: schuift om de 7 seconden een review door, pauzeert bij muis/aanraken/focus
+(function(){
+  var root=document.querySelector('.reviews-carousel'); if(!root) return;
+  var track=root.querySelector('.reviews'), cards=track.children, dotsBox=root.querySelector('.reviews-dots');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pos=0, timer=null, paused=false, DELAY=7000;
+  function perView(){ return parseInt(getComputedStyle(root).getPropertyValue('--per'))||1; }
+  function maxPos(){ return Math.max(0, cards.length - perView()); }
+  function buildDots(){
+    dotsBox.innerHTML='';
+    for(var i=0;i<=maxPos();i++){ (function(i){
+      var b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label','Toon review '+(i+1));
+      b.addEventListener('click',function(){ go(i); restart(); }); dotsBox.appendChild(b);
+    })(i); }
+  }
+  function go(i){
+    var m=maxPos(); pos=(i>m)?0:(i<0?m:i);
+    var step=cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap||getComputedStyle(track).gap||0);
+    track.style.transform='translateX('+(-pos*step)+'px)';
+    [].forEach.call(dotsBox.children,function(d,k){ d.setAttribute('aria-current', k===pos?'true':'false'); });
+    [].forEach.call(cards,function(c,k){ var vis=k>=pos&&k<pos+perView(); c.setAttribute('aria-hidden',vis?'false':'true'); });
+  }
+  function start(){ if(reduce||paused||cards.length<=perView()) return; stop(); timer=setInterval(function(){ go(pos+1); },DELAY); }
+  function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+  function restart(){ stop(); start(); }
+  root.querySelectorAll('.reviews-btn').forEach(function(b){ b.addEventListener('click',function(){ go(pos+parseInt(b.dataset.dir)); restart(); }); });
+  root.addEventListener('mouseenter',function(){ paused=true; stop(); });
+  root.addEventListener('mouseleave',function(){ paused=false; start(); });
+  root.addEventListener('focusin',function(){ paused=true; stop(); });
+  root.addEventListener('focusout',function(){ paused=false; start(); });
+  var tx=null;
+  root.addEventListener('touchstart',function(e){ tx=e.touches[0].clientX; paused=true; stop(); },{passive:true});
+  root.addEventListener('touchend',function(e){ if(tx!==null){ var dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>40) go(pos+(dx<0?1:-1)); } tx=null; paused=false; start(); });
+  document.addEventListener('visibilitychange',function(){ document.hidden?stop():start(); });
+  var lastPer=perView();
+  window.addEventListener('resize',function(){ if(perView()!==lastPer){ lastPer=perView(); buildDots(); } go(Math.min(pos,maxPos())); });
+  buildDots(); go(0); start();
+})();
 </script>
 <script src="https://static.virtuagym.com/vg-guest-booking-widget/dist/js/app.js"></script>
 </body>

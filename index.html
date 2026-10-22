@@ -666,6 +666,23 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 if (!location.hash) window.scrollTo(0, 0);
 window.addEventListener('load', function(){ if (!location.hash) window.scrollTo(0, 0); });
 
+// bij een link met #anker (bv. vanuit Google): na het laden van lettertypes, afbeeldingen
+// en widgets opnieuw precies naar het juiste blok springen, zodat je er niet boven uitkomt
+(function(){
+  if (!location.hash) return;
+  var doel = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (!doel) return;
+  var gebruikerScrolt = false;
+  ['wheel','touchstart','keydown'].forEach(function(e){ window.addEventListener(e, function(){ gebruikerScrolt = true; }, {passive:true, once:true}); });
+  function uitlijnen(){ if (!gebruikerScrolt) doel.scrollIntoView({behavior:'auto', block:'start'}); }
+  window.addEventListener('load', function(){
+    uitlijnen();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(uitlijnen);
+    setTimeout(uitlijnen, 600);
+    setTimeout(uitlijnen, 1500);
+  });
+})();
+
 document.getElementById('jaar').textContent = new Date().getFullYear();
 
 // mobiel menu

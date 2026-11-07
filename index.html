@@ -90,7 +90,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .hero{background:var(--ink);color:#fff;padding:72px 0 88px}
 .hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center}
 .hero h1{font-size:clamp(2.4rem,5.6vw,4.3rem);font-weight:800;color:#fff}
-.hero h1 em{font-style:normal;color:var(--lime)}
 .hero-lead{font-size:1.1rem;color:rgba(255,255,255,.78);max-width:34em;margin:22px 0 30px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px}
 .hero-mark{justify-self:center;max-width:300px}
@@ -98,33 +97,41 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .pulse{width:100%;max-width:460px;margin-top:34px;opacity:.85}
 .pulse path{stroke:var(--lime);stroke-width:2.5;fill:none;stroke-dasharray:620;stroke-dashoffset:620;animation:draw 2.6s .3s ease-out forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
-@media (prefers-reduced-motion:reduce){.pulse path{animation:none;stroke-dashoffset:0}*{scroll-behavior:auto!important}.btn:hover,.value:hover,.post:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){.pulse path{animation:none;stroke-dashoffset:0}*{scroll-behavior:auto!important}.btn:hover,.post:hover{transform:none}}
 
-/* waarden */
-.values{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:44px}
-.value{position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 20px 26px;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
-.value::before{content:"";position:absolute;top:0;left:0;height:4px;width:38px;background:var(--lime);transition:width .32s cubic-bezier(.22,1,.36,1)}
-.value:hover{transform:translateY(-6px);border-color:var(--ink);box-shadow:0 16px 34px rgba(11,11,11,.11)}
-.value:hover::before{width:100%}
-.value:hover .value-icon{background:var(--lime)}
-.value:hover .value-icon svg{stroke:var(--ink)}
-.value-icon{width:52px;height:52px;border-radius:14px;background:var(--ink);display:flex;align-items:center;justify-content:center;margin-bottom:22px;transition:background .22s ease}
-.value-icon svg{width:26px;height:26px;stroke:var(--lime);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .22s ease}
-.value h3{font-size:1.3rem;font-weight:800;letter-spacing:-.025em;margin-bottom:10px}
-.value p{font-size:.94rem;color:var(--slate);margin:0}
+/* waarden: rustige lijst met icoon ervoor */
+#waarden .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:20px 64px;align-items:start}
+#waarden h2{grid-column:1}
+.values-intro{grid-column:1;color:var(--slate);max-width:24em}
+.values{grid-column:2;grid-row:1 / span 3;list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.value{display:grid;grid-template-columns:34px 1fr;gap:4px 18px;padding:20px 0;border-bottom:1px solid var(--line)}
+.value-icon{grid-row:1 / span 2;padding-top:2px}
+.value-icon svg{width:26px;height:26px;stroke:var(--ink);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.value h3{font-size:1.15rem}
+.value p{font-size:.95rem;color:var(--slate);margin:0}
 
 /* voor wie */
 .fit{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px 34px;margin-top:36px;list-style:none;padding:0}
 .fit li{position:relative;padding-left:34px;font-size:1rem}
 .fit li::before{content:"";position:absolute;left:0;top:.42em;width:16px;height:9px;border-left:3px solid var(--lime);border-bottom:3px solid var(--lime);transform:rotate(-45deg)}
-.fit-note{margin-top:34px;padding:22px 26px;border-left:4px solid var(--lime);background:#fff;border-radius:0 12px 12px 0;font-size:.97rem}
+.fit-note{margin:40px 0 0;max-width:40em;font-size:1.12rem;line-height:1.6}
+.h-sub{font-size:clamp(1.6rem,3vw,2.2rem)}
+.sub-lead{color:var(--slate);margin:12px 0 0}
+.section-dark .sub-lead{color:rgba(255,255,255,.75)}
+section.flow{padding-top:0;margin-top:-1px;position:relative}
+.divided .wrap{border-top:1px solid var(--line);padding-top:72px}
+section.divided{padding-top:0}
 
-/* stappen */
-.steps{counter-reset:step;display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:26px;margin-top:44px}
-.step{border-top:2px solid var(--lime);padding-top:20px}
-.step::before{counter-increment:step;content:counter(step,decimal-leading-zero);font-family:var(--display);font-weight:800;font-size:.9rem;color:var(--lime);display:block;margin-bottom:10px}
-.step h3{margin-bottom:8px}
-.step p{color:rgba(255,255,255,.7);font-size:.94rem;margin:0}
+/* stappen: tijdlijn zonder nummers */
+.steps{margin-top:36px;border-top:1px solid rgba(255,255,255,.16)}
+.step{display:grid;grid-template-columns:240px 1fr;gap:8px 40px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+.step h3{margin:0;font-size:1.2rem;display:flex;align-items:center;gap:14px}
+.step-nr{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid var(--lime);color:var(--lime-bright);display:inline-flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;letter-spacing:0}
+.step p{padding-left:0}
+.step-link{display:inline-block;margin-top:6px;color:var(--lime-bright);font-weight:600;text-decoration:none}
+.step-link:hover{text-decoration:underline}
+.step p{color:rgba(255,255,255,.72);font-size:.97rem;margin:0;max-width:36em}
+#aanpak{padding-bottom:72px}
 
 /* reviews */
 .reviews-carousel{margin-top:44px;--per:2;--gap:22px}
@@ -253,10 +260,10 @@ form .btn{width:100%;text-align:center;margin-top:6px}
 
 footer{background:var(--ink);color:rgba(255,255,255,.55);padding:44px 0;border-top:1px solid rgba(255,255,255,.1);font-size:.87rem}
 .foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
 footer a{color:rgba(255,255,255,.75)}
 
-@media(max-width:1000px){.values{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:620px){.values{grid-template-columns:1fr}}
+@media(max-width:860px){#waarden .wrap{grid-template-columns:1fr}.values{grid-column:1;grid-row:auto;margin-top:10px}.step{grid-template-columns:1fr}.divided .wrap{padding-top:56px}}
 
 @media(max-width:860px){
   .hero{padding:34px 0 70px}
@@ -287,8 +294,9 @@ footer a{color:rgba(255,255,255,.75)}
     <nav class="nav-links" id="navlinks">
       <a href="#voor-wie">Voor wie</a>
       <a href="#aanpak">Zo werkt het</a>
-      <a href="#trajecten">Trajecten</a>
+      <a href="#ervaringen">Ervaringen</a>
       <a href="#over">Over Yuri</a>
+      <a href="#trajecten">Trajecten</a>
       <a class="btn btn-primary btn-sm" href="#kennismaking">Gratis kennismaking</a>
     </nav>
   </div>
@@ -298,14 +306,13 @@ footer a{color:rgba(255,255,255,.75)}
 <div class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow">Online voedingscoaching</p>
-      <h1>Jouw boost naar een <em>gezonde leefstijl</em>.</h1>
-      <p class="hero-lead">Geen crashdieet en geen standaardschema. Samen bouwen we aan gewoontes die passen bij jouw dag, zodat je uiteindelijk zelfstandig verder kunt. Volledig online, met korte lijnen via de app.</p>
+      <h1>Jouw boost naar een gezonde leefstijl.</h1>
+      <p class="hero-lead">Online voedingscoaching door gewichtsconsulent Yuri Leemans. Samen bouwen we aan gewoontes die passen bij jouw dag, zodat je uiteindelijk zelfstandig verder kunt. Volledig online, met korte lijnen via de app.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#kennismaking">Plan je gratis kennismaking</a>
         <a class="btn btn-ghost" href="#aanpak">Bekijk hoe de begeleiding werkt</a>
       </div>
-      <p class="hero-note">Gratis telefonische kennismaking. Vrijblijvend, je zit nergens aan vast.</p>
+      <p class="hero-note">De telefonische kennismaking is gratis en duurt 15 tot 20 minuten.</p>
       <svg class="pulse" viewBox="0 0 520 60" aria-hidden="true">
         <path d="M0 30 H150 l14 -22 l13 44 l12 -52 l14 52 l11 -22 H520"/>
       </svg>
@@ -315,10 +322,10 @@ footer a{color:rgba(255,255,255,.75)}
 </div>
 
 <!-- uitgangspunten -->
-<section class="section-light">
+<section class="section-light" id="waarden">
   <div class="wrap">
-    <p class="eyebrow">Waar ik voor sta</p>
-    <h2>Vijf uitgangspunten in elk traject</h2>
+    <h2>Waar ik voor sta</h2>
+    <div class="values-intro"><p>Vijf dingen die in elk traject terugkomen, of je nu zes weken of een half jaar met me werkt.</p></div>
     <div class="values">
       <div class="value">
         <div class="value-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></svg></div>
@@ -333,7 +340,7 @@ footer a{color:rgba(255,255,255,.75)}
       <div class="value">
         <div class="value-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg></div>
         <h3>Duurzaam</h3>
-        <p>De focus ligt op gewoontes die je op de lange termijn volhoudt, niet op tijdelijke di&euml;ten.</p>
+        <p>De focus ligt op gewoontes die je ook over een paar jaar nog volhoudt.</p>
       </div>
       <div class="value">
         <div class="value-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></div>
@@ -350,46 +357,67 @@ footer a{color:rgba(255,255,255,.75)}
 </section>
 
 <!-- W15: voor wie -->
-<section class="section-light" id="voor-wie" style="padding-top:0">
+<section class="section-light flow" id="voor-wie">
   <div class="wrap">
-    <p class="eyebrow">Voor wie</p>
-    <h2>YuLe Health Boost past bij jou als je&hellip;</h2>
+    <h2 class="h-sub">Past dit bij jou?</h2>
+    <p class="sub-lead">YuLe Health Boost is er voor jou als je&hellip;</p>
     <ul class="fit">
       <li>Op een verantwoorde manier wil afvallen of gezonder wil eten</li>
       <li>Klaar bent met steeds opnieuw een dieet beginnen</li>
       <li>Behoefte hebt aan structuur en iemand die met je meekijkt</li>
       <li>Verjaardagen, weekenden en uit eten gaan wil leren inpassen</li>
-      <li>Wil begrijpen w&aacute;&aacute;rom iets werkt, niet alleen w&aacute;t je moet doen</li>
+      <li>Wil begrijpen waarom iets werkt</li>
       <li>Uiteindelijk zelfstandig verder wil zonder coach</li>
     </ul>
     <!-- W14: zelfredzaamheid -->
-    <div class="fit-note">
-      <strong>Het doel is dat je mij niet meer nodig hebt.</strong> Tijdens de begeleiding bouw je kennis, vaardigheden en routines op waarmee je je nieuwe leefstijl zelf voortzet. Niet afhankelijk blijven van een coach, maar zelf aan het stuur.
-    </div>
+    <p class="fit-note"><strong>Het doel is dat je mij uiteindelijk niet meer nodig hebt.</strong> Tijdens de begeleiding bouw je kennis, vaardigheden en routines op waarmee je zelf verder kunt.</p>
   </div>
 </section>
 
 <!-- W02 secundair doel: zo werkt het -->
 <section class="section-dark" id="aanpak">
   <div class="wrap">
-    <p class="eyebrow">Zo werkt het</p>
-    <h2>Van kennismaking tot eigen routine</h2>
+    <h2>Zo werkt het</h2>
     <div class="steps">
       <div class="step">
-        <h3>Gratis kennismaking</h3>
-        <p>Een kort telefoongesprek over waar je nu staat en wat je wil bereiken. Vrijblijvend, je zit nergens aan vast.</p>
+        <h3><span class="step-nr" aria-hidden="true">1</span>Gratis kennismaking</h3>
+        <p>Een kort telefoongesprek over waar je nu staat en wat je wilt bereiken. Daarna beslis je in alle rust of je verder wilt. <a class="step-link" href="#kennismaking">Plan direct je kennismaking</a></p>
       </div>
       <div class="step">
-        <h3>Intake</h3>
+        <h3><span class="step-nr" aria-hidden="true">2</span>Intake</h3>
         <p>Een uitgebreid gesprek van 60 minuten. We brengen je situatie in kaart en stellen samen haalbare doelen.</p>
       </div>
       <div class="step">
-        <h3>Begeleiding</h3>
+        <h3><span class="step-nr" aria-hidden="true">3</span>Begeleiding</h3>
         <p>Je persoonlijke advies staat klaar in de app. We houden contact, sturen bij en vieren wat er goed gaat.</p>
       </div>
       <div class="step">
-        <h3>Zelfstandig verder</h3>
+        <h3><span class="step-nr" aria-hidden="true">4</span>Zelfstandig verder</h3>
         <p>We sluiten af met een evaluatie. Je gaat verder met routines die je zelf kunt volhouden.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- W13: Virtuagym visueel -->
+<section class="section-dark flow" id="de-app">
+  <div class="wrap">
+    <h2 class="h-sub">Alles in de app</h2>
+    <p class="lead">De begeleiding loopt via Virtuagym. Na je aanmelding krijg je een uitnodiging per mail, daarmee log je in op de app. Vanaf dat moment staat alles bij elkaar op je telefoon.</p>
+    <div class="split app-split">
+      <div class="app-shot">
+        <img src="images/app-virtuagym.jpg" width="640" height="1190" loading="lazy" alt="Startscherm van de YuLe Health Boost-app in Virtuagym met onder andere Voeding, Voortgangsregistratie, Afspraak Rooster en Community">
+      </div>
+      <div class="card">
+        <h3>Wat je in de app vindt</h3>
+        <ul>
+          <li>Je persoonlijke voedingsschema en advies</li>
+          <li>Je voedingsdagboek</li>
+          <li>Voortgang en metingen in beeld</li>
+          <li>Chat en videoconsulten met mij</li>
+          <li>Je afspraken en planning</li>
+          <li>Recepten en achtergrondinformatie</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -400,7 +428,6 @@ footer a{color:rgba(255,255,255,.75)}
      toestemming, of verwijder deze hele sectie voordat de site live gaat. -->
 <section class="section-light" id="ervaringen">
   <div class="wrap">
-    <p class="eyebrow">Ervaringen</p>
     <h2>Wat cli&euml;nten zeggen</h2>
     <!-- Reviews-carrousel. Review toevoegen: kopieer een blok "review" en vul tekst, voornaam en traject in. De bolletjes passen zich vanzelf aan. -->
     <div class="reviews-carousel" aria-roledescription="carrousel" aria-label="Ervaringen van cli&euml;nten">
@@ -434,73 +461,45 @@ footer a{color:rgba(255,255,255,.75)}
         <button class="reviews-btn" type="button" data-dir="1" aria-label="Volgende review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
       </div>
     </div>
-    <div class="cta-band">
-      <a class="btn btn-primary" href="#kennismaking">Plan je gratis kennismaking</a>
-    </div>
   </div>
 </section>
 
-<!-- W13: Virtuagym visueel -->
-<section class="section-dark" id="de-app">
+<!-- Kennismaking: Virtuagym afspraakwidget. Alle knoppen "Plan je gratis kennismaking" linken hierheen. -->
+<section class="section-dark" id="kennismaking">
   <div class="wrap">
-    <p class="eyebrow">De begeleiding in de app</p>
-    <h2>Alles op &eacute;&eacute;n plek</h2>
-    <p class="lead">De begeleiding loopt via Virtuagym. Na je aanmelding krijg je een uitnodiging per mail, daarmee log je in op de app. Vanaf dat moment staat alles bij elkaar op je telefoon.</p>
-    <div class="split app-split">
-      <div class="app-shot">
-        <img src="images/app-virtuagym.jpg" width="640" height="1190" loading="lazy" alt="Startscherm van de YuLe Health Boost-app in Virtuagym met onder andere Voeding, Voortgangsregistratie, Afspraak Rooster en Community">
-      </div>
-      <div class="card">
-        <h3>Wat je in de app vindt</h3>
-        <ul>
-          <li>Je persoonlijke voedingsschema en advies</li>
-          <li>Je voedingsdagboek</li>
-          <li>Voortgang en metingen in beeld</li>
-          <li>Chat en videoconsulten met mij</li>
-          <li>Je afspraken en planning</li>
-          <li>Recepten en achtergrondinformatie</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Virtuagym webshop (trajecten en prijzen verwijderd) -->
-<section class="section-light" id="trajecten">
-  <div class="wrap">
-    <!-- Virtuagym webshop -->
-    <div class="shop" id="webshop">
-      <h3>Investeer in jezelf</h3>
-      <p>Weet je al welk traject bij je past? Dan zet je hieronder direct de eerste stap. Een investering in je gezondheid en in een leefstijl die je zelf volhoudt.</p>
-      <div class="embed-card">
-        <iframe class="shop-frame" src="https://yulehealthboost.virtuagym.com/webshop/?club=dWNxQzNZMkZGRmR1R1NUVkc3M0Z4QT09&embedded=1" title="Webshop YuLe Health Boost" scrolling="yes" loading="lazy"></iframe>
-      </div>
-      <p class="legal-note">Met je aanmelding ga je akkoord met de <a href="algemene-voorwaarden.html" target="_blank" rel="noopener">algemene voorwaarden</a>. Lees in de <a href="privacyverklaring.html" target="_blank" rel="noopener">privacyverklaring</a> hoe ik met je gegevens omga.</p>
-    </div>
-  </div>
-</section>
-
-<!-- W24: los consult -->
-<section class="section-dark" id="consult">
-  <div class="wrap">
-    <p class="eyebrow">Eenmalig advies op maat</p>
-    <h2>Eenmalig consult</h2>
-    <div class="split">
+    <h2>Plan een gratis kennismaking</h2>
+    <p class="lead">Plan zelf een moment in voor een gratis telefonische kennismaking van 15 tot 20 minuten. Zo kunnen we rustig kijken of het klikt.</p>
+    <div class="form-grid">
       <div>
-        <p class="lead" style="margin-top:8px">Nog niet toe aan een volledig traject? Tijdens het eenmalige consult analyseer ik je voedingsdagboek en krijg je concrete adviezen die je meteen kunt toepassen. Een laagdrempelige manier om te ervaren hoe ik werk.</p>
-        <a class="btn btn-primary" href="#webshop" style="margin-top:10px">Boek een eenmalig consult</a>
+        <div class="embed-card booking">
+          <vg-guest-booking widget-key="6aca0946117398aedf370c8e" club-id="104382" lang="nl" source=""></vg-guest-booking>
+        </div>
+        <p class="legal-note">Bij het inplannen laat je je naam, e-mailadres en telefoonnummer achter. Lees in de <a href="privacyverklaring.html" target="_blank" rel="noopener">privacyverklaring</a> hoe ik daarmee omga. Op de kennismaking zijn de <a href="algemene-voorwaarden.html" target="_blank" rel="noopener">algemene voorwaarden</a> van toepassing.</p>
       </div>
-      <div class="card">
-        <div class="plan-price" style="color:#fff">&euro; 95<small style="color:rgba(255,255,255,.6)">eenmalig, inclusief btw</small></div>
-        <ul style="margin-top:22px">
-          <li>Analyse van je voedingsdagboek</li>
-          <li>Analyse van je energie-inname</li>
-          <li>Analyse van macro- en micronutri&euml;nten</li>
-          <li>Berekening van je persoonlijke behoefte</li>
-          <li>Analyse- en coachingsgesprek van 60 minuten</li>
-          <li>Praktische adviezen op maat</li>
-          <li><strong>Receptenboekje</strong>, inbegrepen bij het consult</li>
+
+      <div>
+        <h3>Liever direct contact?</h3>
+        <ul class="contact-list">
+          <li>
+            <strong>Mail</strong>
+            <a href="mailto:ylboost@outlook.com">ylboost@outlook.com</a>
+          </li>
+          <li>
+            <strong>Werkgebied</strong>
+            Volledig online, dus heel Nederland. Gevestigd in Waalwijk.
+          </li>
         </ul>
+        <div class="socials">
+          <a href="https://www.instagram.com/yule_health_boost/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61594721957889" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/yuri-leemans" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.2v.1M12 17v-6.5M12 13.5c0-1.8 1.2-3 2.6-3S17 11.4 17 13.5V17"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -509,15 +508,14 @@ footer a{color:rgba(255,255,255,.75)}
 <!-- W20 + W22: over mij, foto en vertrouwensblok -->
 <section class="section-light" id="over">
   <div class="wrap">
-    <p class="eyebrow">Over de coach</p>
-    <h2>Yuri Leemans</h2>
+    <h2>Hoi, ik ben Yuri</h2>
     <div class="about">
       <div class="portrait">
         <img src="images/yuri-leemans.jpg" width="600" height="720" loading="lazy" alt="Portretfoto van Yuri Leemans, coach van YuLe Health Boost">
       </div>
       <div>
         <p>Ik combineer jaren ervaring in het onderwijs met werk als personal trainer en keeperstrainer. In al die rollen draait het om hetzelfde: mensen begeleiden, motiveren en helpen om zelf stappen te zetten.</p>
-        <p>Met YuLe Health Boost breng ik dat samen. Niet het dieet staat centraal, maar jij. We kijken naar wat haalbaar is in jouw week en bouwen dat rustig uit tot een routine die blijft hangen, ook als ik straks niet meer meekijk.</p>
+        <p>Met YuLe Health Boost breng ik dat samen. Jij staat centraal, met je eigen week, werk en gezin. We kijken naar wat haalbaar is in jouw week en bouwen dat rustig uit tot een routine die blijft hangen, ook als ik straks niet meer meekijk.</p>
         <p>Werken vanuit Waalwijk, coachen door heel Nederland.</p>
 
         <h3 style="margin-top:30px">Opleidingen en certificeringen</h3>
@@ -558,12 +556,51 @@ footer a{color:rgba(255,255,255,.75)}
   </div>
 </section>
 
+<!-- W24: los consult -->
+<section class="section-light divided" id="consult">
+  <div class="wrap">
+    <h2>Eenmalig consult</h2>
+    <div class="split">
+      <div>
+        <p class="lead" style="margin-top:8px">Nog niet toe aan een volledig traject? Tijdens het eenmalige consult analyseer ik je voedingsdagboek en krijg je concrete adviezen die je meteen kunt toepassen. Een laagdrempelige manier om te ervaren hoe ik werk.</p>
+        <a class="btn btn-primary" href="#webshop" style="margin-top:10px">Boek een eenmalig consult</a>
+      </div>
+      <div class="card">
+        <div class="plan-price">&euro; 95<small>eenmalig, inclusief btw</small></div>
+        <ul style="margin-top:22px">
+          <li>Analyse van je voedingsdagboek</li>
+          <li>Analyse van je energie-inname</li>
+          <li>Analyse van macro- en micronutri&euml;nten</li>
+          <li>Berekening van je persoonlijke behoefte</li>
+          <li>Analyse- en coachingsgesprek van 60 minuten</li>
+          <li>Praktische adviezen op maat</li>
+          <li><strong>Receptenboekje</strong>, inbegrepen bij het consult</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Virtuagym webshop (trajecten en prijzen verwijderd) -->
+<section class="section-light flow" id="trajecten">
+  <div class="wrap">
+    <!-- Virtuagym webshop -->
+    <div class="shop" id="webshop">
+      <h3>Investeer in jezelf</h3>
+      <p>Weet je al welk traject bij je past? Dan zet je hieronder direct de eerste stap. Een investering in je gezondheid en in een leefstijl die je zelf volhoudt.</p>
+      <div class="embed-card">
+        <iframe class="shop-frame" src="https://yulehealthboost.virtuagym.com/webshop/?club=dWNxQzNZMkZGRmR1R1NUVkc3M0Z4QT09&embedded=1" title="Webshop YuLe Health Boost" scrolling="yes" loading="lazy"></iframe>
+      </div>
+      <p class="legal-note">Met je aanmelding ga je akkoord met de <a href="algemene-voorwaarden.html" target="_blank" rel="noopener">algemene voorwaarden</a>. Lees in de <a href="privacyverklaring.html" target="_blank" rel="noopener">privacyverklaring</a> hoe ik met je gegevens omga.</p>
+    </div>
+  </div>
+</section>
+
 <!-- W26: blog. Verberg deze sectie voor livegang zolang er nog placeholders staan.
      Verbergen doe je door hieronder style="display:none" toe te voegen aan de section,
      en de link "Kennis" uit het menu te halen. -->
 <section class="section-light" id="blog" style="display:none;border-top:1px solid var(--line)">
   <div class="wrap">
-    <p class="eyebrow">Kennis</p>
     <h2>Blog</h2>
     <p class="lead">Praktische tips over voeding, gewoontes en volhouden. Kort, onderbouwd en direct toepasbaar.</p>
     <div class="posts">
@@ -573,7 +610,7 @@ footer a{color:rgba(255,255,255,.75)}
         <div class="post-body">
           <div class="post-meta">Voeding <span>3 min lezen</span></div>
           <h3>Waarom crashdi&euml;ten zelden werken</h3>
-          <p>Een strak dieet levert de eerste weken vaak snel resultaat op. Toch valt het merendeel van de mensen daarna weer terug. Dat komt niet door een gebrek aan wilskracht, maar doordat het patroon niet vol te houden is naast werk, gezin en sociale afspraken. In dit artikel lees je waarom kleine, haalbare aanpassingen op de lange termijn meer opleveren dan een streng schema.</p>
+          <p>Een strak dieet levert de eerste weken vaak snel resultaat op. Toch valt het merendeel van de mensen daarna weer terug. Meestal ligt dat aan het patroon zelf: het is naast werk, gezin en sociale afspraken simpelweg niet vol te houden. In dit artikel lees je waarom kleine, haalbare aanpassingen op de lange termijn meer opleveren dan een streng schema.</p>
           <div class="post-more">Lees verder</div>
         </div>
       </a>
@@ -599,48 +636,6 @@ footer a{color:rgba(255,255,255,.75)}
   </div>
 </section>
 
-<!-- Kennismaking: Virtuagym afspraakwidget. Alle knoppen "Plan je gratis kennismaking" linken hierheen. -->
-<section class="section-dark" id="kennismaking">
-  <div class="wrap">
-    <p class="eyebrow">Gratis kennismaking</p>
-    <h2>Klaar voor je eerste stap?</h2>
-    <p class="lead">Plan zelf een moment in voor een gratis telefonische kennismaking van 15 tot 20 minuten. Geen verplichtingen, gewoon even kijken of het klikt.</p>
-    <div class="form-grid">
-      <div>
-        <div class="embed-card booking">
-          <vg-guest-booking widget-key="6aca0946117398aedf370c8e" club-id="104382" lang="nl" source=""></vg-guest-booking>
-        </div>
-        <p class="legal-note">Bij het inplannen laat je je naam, e-mailadres en telefoonnummer achter. Lees in de <a href="privacyverklaring.html" target="_blank" rel="noopener">privacyverklaring</a> hoe ik daarmee omga. Op de kennismaking zijn de <a href="algemene-voorwaarden.html" target="_blank" rel="noopener">algemene voorwaarden</a> van toepassing.</p>
-      </div>
-
-      <div>
-        <h3>Liever direct contact?</h3>
-        <ul class="contact-list">
-          <li>
-            <strong>Mail</strong>
-            <a href="mailto:ylboost@outlook.com">ylboost@outlook.com</a>
-          </li>
-          <li>
-            <strong>Werkgebied</strong>
-            Volledig online, dus heel Nederland. Gevestigd in Waalwijk.
-          </li>
-        </ul>
-        <div class="socials">
-          <a href="https://www.instagram.com/yule_health_boost/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a href="https://www.facebook.com/profile.php?id=61594721957889" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/yuri-leemans" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.2v.1M12 17v-6.5M12 13.5c0-1.8 1.2-3 2.6-3S17 11.4 17 13.5V17"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- W29: footer -->
 <footer>
   <div class="wrap foot">
@@ -656,10 +651,10 @@ footer a{color:rgba(255,255,255,.75)}
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.2v.1M12 17v-6.5M12 13.5c0-1.8 1.2-3 2.6-3S17 11.4 17 13.5V17"/></svg>
       </a>
     </div>
-    <div>
-      KvK 42163925 &nbsp;&middot;&nbsp;
-      <a href="privacyverklaring.html">Privacyverklaring</a> &nbsp;&middot;&nbsp;
-      <a href="algemene-voorwaarden.html">Algemene voorwaarden</a> &nbsp;&middot;&nbsp;
+    <div class="foot-links">
+      <span>KvK 42163925</span>
+      <a href="privacyverklaring.html">Privacyverklaring</a>
+      <a href="algemene-voorwaarden.html">Algemene voorwaarden</a>
       <button type="button" class="yc-instellingen" data-cookie-instellingen>Cookie-instellingen</button>
     </div>
   </div>

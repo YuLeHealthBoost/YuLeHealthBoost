@@ -22,9 +22,11 @@
     gaGeladen = true;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { dataLayer.push(arguments); };
-    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+    // Google Consent Mode v2: standaard alles geweigerd, daarna alleen statistieken toegestaan
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', functionality_storage: 'denied', personalization_storage: 'denied', security_storage: 'granted' });
+    gtag('consent', 'update', { analytics_storage: 'granted' });
     gtag('js', new Date());
-    gtag('config', GA_ID, { allow_google_signals: false, allow_ad_personalization_signals: false });
+    gtag('config', GA_ID, { allow_google_signals: false, allow_ad_personalization_signals: false, cookie_expires: 5184000 });
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
@@ -49,9 +51,8 @@
     '#yule-cookie p{margin:0 0 14px}' +
     '#yule-cookie a{color:#B0D40C}' +
     '#yule-cookie .yc-knoppen{display:flex;gap:10px;flex-wrap:wrap}' +
-    '#yule-cookie button{font:inherit;font-weight:600;border-radius:999px;padding:10px 18px;cursor:pointer;border:1px solid #95B605}' +
-    '#yule-cookie .yc-ja{background:#95B605;color:#0B0B0B}' +
-    '#yule-cookie .yc-nee{background:transparent;color:#fff}' +
+    '#yule-cookie button{flex:1 1 140px;font:inherit;font-weight:600;border-radius:999px;padding:11px 18px;cursor:pointer;border:1.5px solid #95B605;background:transparent;color:#fff}' +
+    '#yule-cookie button:hover,#yule-cookie button:focus-visible{background:#95B605;color:#0B0B0B}' +
     '.yc-instellingen{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}';
 
   function toonBanner() {
@@ -61,11 +62,12 @@
     b.setAttribute('role', 'dialog');
     b.setAttribute('aria-label', 'Cookies');
     b.innerHTML =
-      '<p><strong>Mag ik meten hoe mijn website wordt gebruikt?</strong><br>' +
-      'Met jouw toestemming gebruik ik Google Analytics om te zien hoeveel mensen mijn site bezoeken en welke pagina’s ze lezen. ' +
-      'Ik gebruik dit niet voor advertenties. Lees meer in de <a href="privacyverklaring.html#cookies">privacyverklaring</a>.</p>' +
-      '<div class="yc-knoppen"><button type="button" class="yc-ja">Akkoord</button>' +
-      '<button type="button" class="yc-nee">Liever niet</button></div>';
+      '<p><strong>Cookies op deze website</strong><br>' +
+      'Met jouw toestemming plaats ik cookies van Google Analytics, zodat ik kan zien hoeveel mensen mijn site bezoeken en welke pagina’s ze lezen. ' +
+      'Ik gebruik dit niet voor advertenties. Weiger je, dan plaats ik geen analytische cookies. ' +
+      'Lees meer in de <a href="cookieverklaring.html">cookieverklaring</a> en de <a href="privacyverklaring.html#cookies">privacyverklaring</a>.</p>' +
+      '<div class="yc-knoppen"><button type="button" class="yc-ja">Accepteren</button>' +
+      '<button type="button" class="yc-nee">Weigeren</button></div>';
     document.body.appendChild(b);
     b.querySelector('.yc-ja').onclick = function () { bewaarKeuze('ja'); b.remove(); laadAnalytics(); };
     b.querySelector('.yc-nee').onclick = function () {

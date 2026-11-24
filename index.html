@@ -250,6 +250,9 @@ form .btn{width:100%;text-align:center;margin-top:6px}
 .shop > p{color:var(--slate);max-width:44em}
 .embed-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:22px;color:var(--ink)}
 .embed-card.booking{margin-top:0;padding:18px;min-height:420px}
+/* Virtuagym-widget: het akkoord-vinkje niet laten krimpen door de algemene img/svg-regel */
+.embed-card.booking svg,.embed-card.booking img{max-width:none;flex-shrink:0}
+.embed-card.booking input[type=checkbox]{width:22px;height:22px;min-width:22px;flex-shrink:0;accent-color:#96B810;cursor:pointer}
 .shop-frame{display:block;width:100%;height:760px;border:0}
 .legal-note{font-size:.85rem;color:var(--slate);margin:14px 0 0}
 .legal-note a{text-decoration:underline}
